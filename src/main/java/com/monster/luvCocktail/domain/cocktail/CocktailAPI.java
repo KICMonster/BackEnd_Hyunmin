@@ -1,4 +1,4 @@
-package com.codingbox.monster;
+package com.monster.luvCocktail.domain.cocktail;
 
 public class  CocktailAPI {
 

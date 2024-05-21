@@ -1,4 +1,4 @@
-package com.codingbox.monster;
+package com.monster.luvCocktail.domain.cocktail;
 
 import lombok.Getter;
 import org.springframework.beans.factory.annotation.Value;

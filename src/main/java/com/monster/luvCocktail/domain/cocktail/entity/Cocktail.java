@@ -1,4 +1,4 @@
-package com.codingbox.monster.entity;
+package com.monster.luvCocktail.domain.cocktail.entity;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;

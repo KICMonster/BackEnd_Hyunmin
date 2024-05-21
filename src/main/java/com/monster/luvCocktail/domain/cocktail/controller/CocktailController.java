@@ -1,9 +1,9 @@
-package com.codingbox.monster.controller;
+package com.monster.luvCocktail.domain.cocktail.controller;
 
-import com.codingbox.monster.ApiDefaultSetting;
-import com.codingbox.monster.dto.CocktailDTO;
-import com.codingbox.monster.entity.Cocktail;
-import com.codingbox.monster.service.CocktailService;
+import com.monster.luvCocktail.domain.cocktail.ApiDefaultSetting;
+import com.monster.luvCocktail.domain.cocktail.dto.CocktailDTO;
+import com.monster.luvCocktail.domain.cocktail.entity.Cocktail;
+import com.monster.luvCocktail.domain.cocktail.service.CocktailService;
 import lombok.RequiredArgsConstructor;
 import org.json.JSONObject;
 import org.json.simple.JSONArray;

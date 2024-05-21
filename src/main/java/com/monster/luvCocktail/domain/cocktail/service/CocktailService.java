@@ -1,9 +1,9 @@
-package com.codingbox.monster.service;
+package com.monster.luvCocktail.domain.cocktail.service;
 
-import com.codingbox.monster.ApiConfig;
-import com.codingbox.monster.ApiDefaultSetting;
-import com.codingbox.monster.entity.Cocktail;
-import com.codingbox.monster.repository.CocktailRepository;
+import com.monster.luvCocktail.domain.cocktail.ApiConfig;
+import com.monster.luvCocktail.domain.cocktail.ApiDefaultSetting;
+import com.monster.luvCocktail.domain.cocktail.entity.Cocktail;
+import com.monster.luvCocktail.domain.cocktail.repository.CocktailRepository;
 import lombok.RequiredArgsConstructor;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
@@ -11,7 +11,6 @@ import okhttp3.Response;
 import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import java.io.IOException;
@@ -65,19 +64,12 @@ public class CocktailService {
         Cocktail cocktail = new Cocktail();
         cocktail.setIdDrink(idDrink);
         cocktail.setStrDrink(strDrink);
-        cocktail.setStrDrinkAlternate(strDrinkAlternate);
-        cocktail.setStrTags(strTags);
-        cocktail.setStrVideo(strVideo);
         cocktail.setStrCategory(strCategory);
-        cocktail.setStrIBA(strIBA);
         cocktail.setStrAlcoholic(strAlcoholic);
         cocktail.setStrGlass(strGlass);
         cocktail.setStrInstructions(strInstructions);
         cocktail.setStrDrinkThumb(strDrinkThumb);
-        cocktail.setStrImageSource(strImageSource);
-        cocktail.setStrImageAttribution(strImageAttribution);
         cocktail.setStrCreativeCommonsConfirmed(strCreativeCommonsConfirmed);
-        cocktail.setDateModified(dateModified);
 
         for (int i = 1; i <= 15; i++) {
             String ingredientKey = "strIngredient" + i;

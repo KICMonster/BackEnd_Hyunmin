@@ -1,4 +1,4 @@
-package com.codingbox.monster.entity;
+package com.monster.luvCocktail.domain.cocktail.entity;
 
 import org.springframework.jdbc.core.JdbcTemplate;
 
