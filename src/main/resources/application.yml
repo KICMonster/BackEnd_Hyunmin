@@ -20,7 +20,7 @@ spring:
         format_sql: true
         show_sql: true
     hibernate:
-      ddl-auto: update
+      ddl-auto: none
 
 
   logging:
@@ -30,7 +30,7 @@ spring:
           SQL: debug
           type: trace
 server:
-  port: 8091
+  port: 9092
   servlet:
     encoding:
       charset: UTF-8

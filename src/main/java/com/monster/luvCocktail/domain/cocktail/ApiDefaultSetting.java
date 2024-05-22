@@ -1,9 +1,8 @@
 package com.monster.luvCocktail.domain.cocktail;
 
 import lombok.RequiredArgsConstructor;
-import org.json.simple.JSONArray;
-import org.json.simple.JSONObject;
-import org.json.simple.parser.JSONParser;
+import org.json.JSONArray;
+import org.json.JSONObject;
 import org.json.simple.parser.ParseException;
 import org.springframework.stereotype.Service;
 
@@ -55,13 +54,17 @@ public class ApiDefaultSetting {
 
     }
 
-    public JSONArray getResultJSON(String result) {
-        JSONParser parser = new JSONParser();
-        try {
-            JSONObject jsonObject = (JSONObject) parser.parse(result);
-            return (JSONArray) jsonObject.get("drinks");
-        } catch (ParseException e) {
-            throw new RuntimeException(e);
-        }
-    }
+//    public JSONArray getResultJSON(String result) {
+//        JSONParser parser = new JSONParser();
+//        try {
+//            JSONObject jsonObject = (JSONObject) parser.parse(result);
+//            return (JSONArray) jsonObject.get("drinks");
+//        } catch (ParseException e) {
+//            throw new RuntimeException(e);
+//        }
+//    }
+public JSONArray getResultJSON(String result) {
+    JSONObject jsonObject = new JSONObject(result);
+    return jsonObject.getJSONArray("drinks");
+}
 }
