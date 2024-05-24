@@ -1,16 +1,28 @@
 package com.monster.luv_cocktail.domain.controller;
 
-import org.springframework.web.bind.annotation.PostMapping;
+import com.monster.luv_cocktail.domain.entity.Board;
+import com.monster.luv_cocktail.domain.service.BoardService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
 
+import java.util.Optional;
+
+@RestController
+@RequestMapping("/api/boards")
 public class BoardController {
-    @PostMapping("/board/write")
-    public String board(String custom_id, String title,String content, String crated_at, String updated_at) {
-        System.out.println("커스텀 칵테일 번호: " + custom_id);
-        System.out.println("제목: " + title);
-        System.out.println("내용: " + content);
-        System.out.println("생성일자: " + crated_at);
-        System.out.println("수정일자: " + updated_at);
+    @Autowired
+    private BoardService boardService;
 
-        return "";
+    @PostMapping
+    public ResponseEntity<Board> createBoard(@RequestBody Board board) {
+        Board savedBoard = boardService.saveBoard(board);
+        return ResponseEntity.ok(savedBoard);
+    }
+
+    @GetMapping("/{id}")
+    public ResponseEntity<Board> getBoard(@PathVariable Long id) {
+        Optional<Board> board = boardService.getBoard(id);
+        return board.map(ResponseEntity::ok).orElseGet(() -> ResponseEntity.notFound().build());
     }
 }

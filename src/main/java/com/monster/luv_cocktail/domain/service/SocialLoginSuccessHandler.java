@@ -47,10 +47,10 @@ public class SocialLoginSuccessHandler {
 
         // JWT 토큰 저장
         JwtToken tokenEntity = new JwtToken();
-        tokenEntity.setJwtAccessToken(jwtToken.getJwtAccessToken());
+        tokenEntity.setAccessToken(jwtToken.getJwtAccessToken());
         tokenEntity.setRefreshToken(jwtToken.getRefreshToken());
         tokenEntity.setGrantType(jwtToken.getGrantType());
-        tokenEntity.setExpiresIn(jwtToken.getExpiresIn());
+        tokenEntity.setExpireIn(jwtToken.getExpiresIn());
         tokenEntity.setMember(existingMemberOptional.orElse(newMember)); // 회원 정보와의 관계 설정
 
         tokenRepository.save(tokenEntity);

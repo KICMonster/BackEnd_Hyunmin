@@ -2,8 +2,8 @@ spring:
   application:
     name: luvCocktail
 
-  config:
-    import: "classpath:applicationAPI.yml"
+#  config:
+#    import: "classpath:applicationAPI.yml"
 
   # MySQL 연결 설정
   datasource:

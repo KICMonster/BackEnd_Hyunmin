@@ -1,9 +1,7 @@
 package com.monster.luv_cocktail.domain.repository;
 
 import com.monster.luv_cocktail.domain.entity.Board;
-import com.monster.luv_cocktail.domain.entity.CustomCocktail;
 import org.springframework.data.jpa.repository.JpaRepository;
 
-public interface CustomCocktailRepository extends JpaRepository<CustomCocktail, Long> {
+public interface BoardRepository extends JpaRepository<Board, Long> {
 }
-

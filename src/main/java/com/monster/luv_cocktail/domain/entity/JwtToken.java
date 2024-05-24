@@ -5,6 +5,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.time.LocalDate;
 import java.util.Date;
 
 @Entity
@@ -45,5 +46,9 @@ public class JwtToken {
         this.accessToken = accessToken;
         this.refreshToken = refreshToken;
         this.expireIn = expireIn;
+    }
+
+    public void setExpireIn(LocalDate expiresIn) {
+
     }
 }
