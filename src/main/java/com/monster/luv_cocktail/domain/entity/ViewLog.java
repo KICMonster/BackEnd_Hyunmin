@@ -19,8 +19,15 @@ public class ViewLog {
     @Column(name = "VIEW_ID", nullable = false)
     private Long id;
 
+    @Temporal(TemporalType.TIMESTAMP)
+    @Column(name = "VIEW_DATE", nullable = false)
+    private Date viewDate;
+
     @ManyToOne
     @JoinColumn(name = "BOARD_ID", nullable = false)
     private Board board;
 
+    @ManyToOne
+    @JoinColumn(name = "MEMBER_ID", nullable = false)
+    private Member member;
 }
