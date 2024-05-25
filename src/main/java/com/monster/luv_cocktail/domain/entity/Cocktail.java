@@ -6,6 +6,10 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import org.w3c.dom.Text;
 
+import javax.swing.text.View;
+import java.util.ArrayList;
+import java.util.List;
+
 @Getter
 @Setter
 @Entity
@@ -133,4 +137,7 @@ public class Cocktail {
 
     @Column(name = "COCKTAIL_MEASURE15")
     private String measure15;
+
+    @OneToMany(mappedBy = "cocktail", cascade = CascadeType.ALL)
+    private List<ViewLog> views = new ArrayList<>();
 }
