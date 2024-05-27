@@ -1,27 +1,21 @@
 package com.monster.luv_cocktail.domain.entity;
 
 import jakarta.persistence.*;
-import lombok.Getter;
+import lombok.Data;
 import lombok.NoArgsConstructor;
-import lombok.Setter;
 
-import java.time.LocalDate;
 import java.util.Date;
 
+@Data
 @Entity
-@Getter
-@Setter
 @NoArgsConstructor
 @Table(name = "JWT_TOKEN")
 public class JwtToken {
 
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY) // 자동으로 ID를 생성하게 설정
     @Column(name = "TOKEN_ID", nullable = false)
-    private String tokenId;
-
-    @ManyToOne
-    @JoinColumn(name = "MEMBER_ID", nullable = false)
-    private Member member;
+    private Long tokenId;
 
     @Column(name = "GRANT_TYPE", nullable = false)
     private String grantType;
@@ -33,13 +27,14 @@ public class JwtToken {
     private String refreshToken;
 
     @Column(name = "EXPIRE_IN", nullable = false)
+    @Temporal(TemporalType.TIMESTAMP)
     private Date expireIn;
 
-    @Column(name = "CREATED_AT", nullable = false)
-    @Temporal(TemporalType.TIMESTAMP)
-    private Date createdAt = new Date();
+    @ManyToOne // Member와의 ManyToOne 관계를 나타냄
+    @JoinColumn(name = "member_id") // 외래 키의 이름 지정
+    private Member member;
 
-    public JwtToken(String tokenId, Member member, String grantType, String accessToken, String refreshToken, Date expireIn) {
+    public JwtToken(Long tokenId, Member member, String grantType, String accessToken, String refreshToken, Date expireIn) {
         this.tokenId = tokenId;
         this.member = member;
         this.grantType = grantType;
@@ -48,7 +43,8 @@ public class JwtToken {
         this.expireIn = expireIn;
     }
 
-    public void setExpireIn(LocalDate expiresIn) {
-
+    public void setExpireIn(Date expireIn) {
+        this.expireIn = expireIn;
     }
 }
+

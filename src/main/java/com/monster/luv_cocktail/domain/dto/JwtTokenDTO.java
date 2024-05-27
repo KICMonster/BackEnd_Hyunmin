@@ -4,7 +4,7 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 
-import java.time.LocalDate;
+import java.util.Date;
 
 @Builder
 @Data
@@ -13,5 +13,5 @@ public class JwtTokenDTO {
     private String grantType;
     private String jwtAccessToken;
     private String refreshToken;
-    private LocalDate expiresIn;
+    private Date expireIn;
 }

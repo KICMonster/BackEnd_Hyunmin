@@ -28,4 +28,3 @@ public class CustomCocktailController {
         return customCocktail.map(ResponseEntity::ok).orElseGet(() -> ResponseEntity.notFound().build());
     }
 }
-

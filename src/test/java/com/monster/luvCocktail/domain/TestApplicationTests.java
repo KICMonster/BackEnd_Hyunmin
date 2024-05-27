@@ -1,13 +1,13 @@
-package com.monster.luvCocktail.domain.cocktail;
+package com.monster.luvCocktail.domain;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class MonsterApplicationTests {
+class TestApplicationTests {
 
-	@Test
-	void contextLoads() {
-	}
+    @Test
+    void contextLoads() {
+    }
 
 }

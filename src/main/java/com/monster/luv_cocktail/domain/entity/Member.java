@@ -1,7 +1,7 @@
 package com.monster.luv_cocktail.domain.entity;
 
-import com.monster.luv_cocktail.domain.Enumeration.LoginType;
-import com.monster.luv_cocktail.domain.Enumeration.Role;
+import com.monster.luv_cocktail.domain.enumeration.LoginType;
+import com.monster.luv_cocktail.domain.enumeration.Role;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -18,13 +18,14 @@ import java.util.List;
 public class Member {
 
     @Id
-    @Column(name = "MEMBER_ID", nullable = false, length = 255)
-    private String id;
+    @GeneratedValue(strategy = GenerationType.IDENTITY) // 자동으로 ID를 생성하게 설정
+    @Column(name = "MEMBER_ID", nullable = false)
+    private Long id;
 
-    @Column(name = "MEMBER_NM", nullable = false, length = 255)
+    @Column(name = "MEMBER_NM", nullable = false, length = 20)
     private String name;
 
-    @Column(name = "EMAIL", nullable = false, unique = true, length = 255)
+    @Column(name = "EMAIL", nullable = false, unique = true, length = 50)
     private String email;
 
     @Column(name = "MEMBER_PW", nullable = true, length = 50)
@@ -56,7 +57,7 @@ public class Member {
     @Column(name = "SURVEY_RES", nullable = true, length = 255)
     private String recordRes;
 
-    @Column(name = "WITHDRAWAL_DATE", nullable = false)
+    @Column(name = "WITHDRAWAL_DATE" , nullable = true)
     private Date withdrawalDate;
 
     @OneToMany(mappedBy = "member", cascade = CascadeType.ALL, orphanRemoval = true)
@@ -69,7 +70,7 @@ public class Member {
     private List<ChoiceVoter> choiceVoters;
 
     @OneToMany(mappedBy = "member", cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<ViewLog> viewLogs;
+    private List<BoardViewLog> boardViewLogs;
 
     @OneToMany(mappedBy = "member", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<CustomCocktail> customCocktails;

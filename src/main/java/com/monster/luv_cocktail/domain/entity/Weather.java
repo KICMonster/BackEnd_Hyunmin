@@ -13,13 +13,12 @@ import lombok.Setter;
 public class Weather {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "WEATHER_ID", nullable = false)
-    private Long id;
+    private String weatherId;
 
-    @Column(name = "WEATHER_CATEGORY", nullable = false, length = 255)
+    @Column(name = "WEATHER_CATEGORY", nullable = false, length = 5)
     private String weatherCategory;
 
-    @Column(name = "WEATHER_STATUS", nullable = false, length = 255)
+    @Column(name = "WEATHER_STATUS", nullable = false, length = 10)
     private String weatherStatus;
 }

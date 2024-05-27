@@ -1,12 +1,17 @@
 package com.monster.luv_cocktail.domain.entity;
 
+import jakarta.persistence.CascadeType;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
+
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import org.w3c.dom.Text;
 
-import javax.swing.text.View;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -45,7 +50,7 @@ public class Cocktail {
     @Column(name = "RC_TASTE")
     private String taste;
 
-    @Column(name = "COCKTAIL_INSTRUCTIONS")
+    @Column(name = "COCKTAIL_INSTRUCTIONS", length = 2000)
     private String instructions;
 
     @Column(name = "COCKTAIL_INGREDIENT1")

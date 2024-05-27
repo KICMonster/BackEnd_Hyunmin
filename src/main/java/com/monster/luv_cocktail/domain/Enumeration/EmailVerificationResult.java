@@ -1,4 +1,4 @@
-package com.monster.luv_cocktail.domain.Enumeration;
+package com.monster.luv_cocktail.domain.enumeration;
 
 public enum EmailVerificationResult {
     SUCCESS("인증 성공"),
@@ -8,15 +8,16 @@ public enum EmailVerificationResult {
 
     private final String message;
 
-    EmailVerificationResult(String message) {
+    private EmailVerificationResult(String message) {
         this.message = message;
     }
 
     public String getMessage() {
-        return message;
+        return this.message;
     }
 
     public static EmailVerificationResult of(boolean authResult) {
         return authResult ? SUCCESS : FAILURE;
     }
 }
+
