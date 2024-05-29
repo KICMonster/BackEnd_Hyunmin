@@ -60,6 +60,8 @@ public class SecurityConfig {
                                     "/search/api/chart").permitAll()
                             .requestMatchers(HttpMethod.DELETE,
                                     "/join/withdraw").permitAll()
+                            .requestMatchers(HttpMethod.PUT,
+                                    "/votes").permitAll()
                             .requestMatchers(
                                     "/api/authenticate",
                                     "/join/emails/verification-requests",
