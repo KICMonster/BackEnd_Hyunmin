@@ -1,4 +1,4 @@
-package com.monster.luv_cocktail.domain.config.security;
+package com.monster.luv_cocktail.domain.config.sequrity;
 
 import com.monster.luv_cocktail.domain.filter.JwtAuthenticationFilter;
 import org.springframework.context.annotation.Bean;

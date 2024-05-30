@@ -1,5 +1,6 @@
 package com.monster.luv_cocktail.domain.controller;
 
+import com.monster.luv_cocktail.domain.dto.CustomCocktailDTO;
 import com.monster.luv_cocktail.domain.entity.CustomCocktail;
 import com.monster.luv_cocktail.domain.repository.CustomCocktailRepository;
 import com.monster.luv_cocktail.domain.service.CustomCocktailService;
@@ -27,29 +28,33 @@ public class CustomCocktailController {
 
     // 모든 칵테일 조회
     @GetMapping
-    public List<CustomCocktail> getAllCustomCocktails() {
-        return customCocktailService.findAll();
+    public ResponseEntity<List<CustomCocktailDTO>> getAllCustomCocktails() {
+        List<CustomCocktailDTO> cocktails = customCocktailService.findAll();
+        log.info("Retrieved {} custom cocktails", cocktails.size());
+        return ResponseEntity.ok(cocktails);
     }
 
     // 칵테일 이름으로 검색
     @GetMapping("/search")
-    public List<CustomCocktail> searchCustomCocktailsByName(@RequestParam String name) {
+    public ResponseEntity<List<CustomCocktailDTO>> searchCustomCocktailsByName(@RequestParam String name) {
         log.info("@@@Searching custom cocktail with name {}", name);
-        return customCocktailService.findByNameContaining(name);
+        List<CustomCocktailDTO> cocktails = customCocktailService.findByNameContaining(name);
+        return ResponseEntity.ok(cocktails);
     }
 
     // 칵테일 생성
     @PostMapping
-    public CustomCocktail createCustomCocktail(@RequestBody CustomCocktail customCocktail) {
-        return customCocktailService.save(customCocktail);
+    public ResponseEntity<CustomCocktailDTO> createCustomCocktail(@RequestBody CustomCocktail customCocktail) {
+        CustomCocktailDTO savedCocktail = customCocktailService.save(customCocktail);
+        return ResponseEntity.status(HttpStatus.CREATED).body(savedCocktail);
     }
 
     // 기존 칵테일 수정
     @PutMapping("/{id}")
-    public ResponseEntity<CustomCocktail> updateCustomCocktail(@PathVariable Long id, @RequestBody CustomCocktail customCocktail) {
+    public ResponseEntity<CustomCocktailDTO> updateCustomCocktail(@PathVariable("id") Long id, @RequestBody CustomCocktail customCocktail) {
         log.info("@@@Updating custom cocktail with ID {}", id);
         try {
-            CustomCocktail updatedCocktail = customCocktailService.update(id, customCocktail);
+            CustomCocktailDTO updatedCocktail = customCocktailService.update(id, customCocktail);
             log.info("@@@Successfully updated custom cocktail with ID {}", id);
             return ResponseEntity.ok(updatedCocktail);
         } catch (RuntimeException e) {
@@ -60,8 +65,9 @@ public class CustomCocktailController {
 
     // 특정 ID로 칵테일 삭제
     @DeleteMapping("/{id}")
-    public void deleteCustomCocktail(@PathVariable Long id) {
+    public ResponseEntity<Void> deleteCustomCocktail(@PathVariable Long id) {
         log.info("Delete Cocktail id{}", id);
         customCocktailService.deleteById(id);
+        return ResponseEntity.noContent().build();
     }
 }
