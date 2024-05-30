@@ -1,7 +1,9 @@
 package com.monster.luv_cocktail.domain.controller;
 
+import com.monster.luv_cocktail.domain.dto.IndexCocktailDTO;
 import com.monster.luv_cocktail.domain.dto.WeatherDTO;
 import com.monster.luv_cocktail.domain.entity.Cocktail;
+import com.monster.luv_cocktail.domain.scheduler.WeatherUpdateScheduler;
 import com.monster.luv_cocktail.domain.service.SearchService;
 import com.monster.luv_cocktail.domain.service.WeatherService;
 import java.util.HashMap;
@@ -25,19 +27,28 @@ public class WeatherController {
     private WeatherService weatherService;
     @Autowired
     private SearchService searchService;
+    @Autowired
+    private WeatherUpdateScheduler weatherUpdateScheduler;
 
     public WeatherController() {
     }
 
-    @GetMapping({"/api/today"})
+    @GetMapping("/api/today")
     public ResponseEntity<Map<String, Object>> getRecommendCocktailsByWeather(@RequestParam double lat, @RequestParam double lon) {
-        System.out.println("lat: " + lat + ", lon: " + lon);
-        WeatherDTO weatherInfo = (WeatherDTO)this.weatherService.getWeather(lat, lon).block();
-        String weatherCode = this.weatherService.getWeatherCode(weatherInfo);
-        List<Cocktail> recommendedCocktails = this.searchService.findCocktailsByWeatherCode(weatherCode);
-        Map<String, Object> response = new HashMap();
+        weatherUpdateScheduler.updateCocktailsForLocation(lat, lon);
+        List<IndexCocktailDTO> recommendedCocktails = weatherUpdateScheduler.getCachedCocktails();
+        WeatherDTO weatherInfo = this.weatherService.getWeather(lat, lon).block();
+
+        Map<String, Object> response = new HashMap<>();
         response.put("weatherInfo", weatherInfo);
         response.put("recommendedCocktails", recommendedCocktails);
         return ResponseEntity.ok(response);
     }
+
+@GetMapping("/recommendDefault")
+public ResponseEntity<List<IndexCocktailDTO>> getRecommendedCocktails() {
+    List<IndexCocktailDTO> cachedCocktails = weatherUpdateScheduler.getCachedCocktails();
+    return ResponseEntity.ok(cachedCocktails);
+}
+
 }

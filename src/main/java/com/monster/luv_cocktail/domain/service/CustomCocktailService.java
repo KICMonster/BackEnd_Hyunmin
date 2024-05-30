@@ -28,12 +28,6 @@ public class CustomCocktailService {
         return customCocktailRepository.findByNameContaining(name);
     }
 
-    // 재료로 칵테일 검색
-    public List<CustomCocktail> findByIngredientContaining(String ingredient) {
-        return customCocktailRepository.findByIngredient1ContainingOrIngredient2ContainingOrIngredient3ContainingOrIngredient4Containing(
-                ingredient, ingredient, ingredient, ingredient);
-    }
-
     // 칵테일 저장 (생성 및 수정)
     public CustomCocktail save(CustomCocktail customCocktail) {
         return customCocktailRepository.save(customCocktail);

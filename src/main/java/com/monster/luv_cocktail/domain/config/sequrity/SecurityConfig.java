@@ -1,4 +1,4 @@
-package com.monster.luv_cocktail.domain.config.sequrity;
+package com.monster.luv_cocktail.domain.config.security;
 
 import com.monster.luv_cocktail.domain.filter.JwtAuthenticationFilter;
 import org.springframework.context.annotation.Bean;
@@ -49,24 +49,43 @@ public class SecurityConfig {
                                     "/join/emails/verifications",
                                     "/join/submit",
                                     "/weather/api/today",
-                                    "/search/api/chart").permitAll()
+                                    "/search/api/chart",
+                                    "/weather/recommendDefault",
+                                    "/api/login").permitAll()
                             .requestMatchers(HttpMethod.POST,
-                                    "/customCocktails/**").permitAll() // 인증 없이 접근 허용
+                                    "/customCocktails/**",
+                                    "/board/**",
+                                    "/choice/**",
+                                    "/vote/**",
+                                    "/search/api/chart",
+                                    "/api/login").permitAll()
                             .requestMatchers(HttpMethod.PUT,
-                                    "/customCocktails/**").permitAll() // 인증 없이 접근 허용
+                                    "/customCocktails/**",
+                                    "/board/**",
+                                    "/choice/**",
+                                    "/vote/**",
+                                    "/view/api/cocktails/{id}").permitAll()
                             .requestMatchers(HttpMethod.GET,
+                                    "/customCocktails/**",
                                     "/weather/api/today",
                                     "/search/api/cocktails",
-                                    "/search/api/chart").permitAll()
+                                    "/search/api/chart",
+                                    "/board/**",
+                                    "/choice/**",
+                                    "/vote/**",
+                                    "/weather/recommendDefault").permitAll()
                             .requestMatchers(HttpMethod.DELETE,
-                                    "/join/withdraw").permitAll()
-                            .requestMatchers(HttpMethod.PUT,
-                                    "/votes").permitAll()
+                                    "/join/withdraw",
+                                    "/customCocktails/**",
+                                    "/board/**",
+                                    "/choice/**",
+                                    "/vote/**").permitAll()
                             .requestMatchers(
                                     "/api/authenticate",
                                     "/join/emails/verification-requests",
                                     "/join/emails/verifications",
-                                    "/join/submit").permitAll()
+                                    "/join/submit",
+                                    "/weather/recommendDefault").permitAll()
                             .requestMatchers(HttpMethod.OPTIONS,
                                     "/search/submitTaste",
                                     "/search/updateTasteAndRecommend").hasAuthority("USER")

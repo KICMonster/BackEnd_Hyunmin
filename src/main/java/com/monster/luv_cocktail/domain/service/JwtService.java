@@ -14,7 +14,7 @@ public class JwtService {
     }
 
     public String extractEmailFromToken(String token) {
-        Claims claims = (Claims)Jwts.parser().setSigningKey(this.jwtSecret).parseClaimsJws(token).getBody();
+        Claims claims = Jwts.parser().setSigningKey(this.jwtSecret).parseClaimsJws(token).getBody();
         return claims.getSubject();
     }
 

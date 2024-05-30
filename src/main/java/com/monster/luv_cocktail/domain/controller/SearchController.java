@@ -68,11 +68,14 @@ public class SearchController {
             System.out.println("taste " + taste);
             System.out.println("jwtToken: " + jwtToken);
             String email = this.jwtService.extractEmailFromToken(jwtToken);
-            Member member = (Member)this.memberRepository.findByEmail(email).orElseThrow(() -> {
+            Member member = this.memberRepository.findByEmail(email).orElseThrow(() -> {
                 return new IllegalArgumentException("Member not found for email: " + email);
             });
-            member.setTaste(tasteString.toString());
+            // 회원의 맛 설정 업데이트
+            member.setTaste(tasteString.getTasteString());
+            System.out.println("member: " + member);
             this.memberRepository.save(member);
+
             List<String> tasteIds = Arrays.asList(tasteString.getTasteString().split("\\."));
             List<Cocktail> recommendedCocktails = this.memberService.findCocktailsByTaste(tasteIds);
             System.out.println("추천 칵테일: " + recommendedCocktails);
