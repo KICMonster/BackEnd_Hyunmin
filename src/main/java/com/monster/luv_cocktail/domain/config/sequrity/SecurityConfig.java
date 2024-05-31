@@ -1,4 +1,4 @@
-package com.monster.luv_cocktail.domain.config.sequrity;
+package com.monster.luv_cocktail.domain.config.security;
 
 import com.monster.luv_cocktail.domain.filter.JwtAuthenticationFilter;
 import org.springframework.context.annotation.Bean;
@@ -54,32 +54,22 @@ public class SecurityConfig {
                                     "/api/login").permitAll()
                             .requestMatchers(HttpMethod.POST,
                                     "/customCocktails/**",
-                                    "/board/**",
-                                    "/choice/**",
-                                    "/vote/**",
                                     "/search/api/chart",
-                                    "/api/login").permitAll()
+                                    "/api/login",
+                                    "/api/recommendations/**").permitAll() // 추가된 부분
                             .requestMatchers(HttpMethod.PUT,
                                     "/customCocktails/**",
-                                    "/board/**",
-                                    "/choice/**",
-                                    "/vote/**",
                                     "/view/api/cocktails/{id}").permitAll()
                             .requestMatchers(HttpMethod.GET,
                                     "/customCocktails/**",
                                     "/weather/api/today",
                                     "/search/api/cocktails",
                                     "/search/api/chart",
-                                    "/board/**",
-                                    "/choice/**",
-                                    "/vote/**",
-                                    "/weather/recommendDefault").permitAll()
+                                    "/weather/recommendDefault",
+                                    "/api/recommendations/**").permitAll() // 추가된 부분
                             .requestMatchers(HttpMethod.DELETE,
                                     "/join/withdraw",
-                                    "/customCocktails/**",
-                                    "/board/**",
-                                    "/choice/**",
-                                    "/vote/**").permitAll()
+                                    "/customCocktails/**").permitAll()
                             .requestMatchers(
                                     "/api/authenticate",
                                     "/join/emails/verification-requests",

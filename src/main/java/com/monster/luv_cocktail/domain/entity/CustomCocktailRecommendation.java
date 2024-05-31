@@ -6,17 +6,18 @@ import lombok.Data;
 @Data
 @Entity
 @Table(name = "CUSTOM_COCKTAIL_RECOMMENDATION", uniqueConstraints = {
-        @UniqueConstraint(columnNames = {"member_id", "custom_id"})
+        @UniqueConstraint(columnNames = {"MEMBER_ID", "CUSTOM_ID"})
 })
 public class CustomCocktailRecommendation {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long recommendationId;
+    @Column(name = "RECOMMENDATION_ID")
+    private Long recommendation_Id;
 
-    @Column(name = "member_id", nullable = false)
+    @Column(name = "MEMBER_ID", nullable = false)
     private Long memberId;
 
-    @Column(name = "custom_id", nullable = false)
+    @Column(name = "CUSTOM_ID", nullable = false)
     private Long customId;
 }

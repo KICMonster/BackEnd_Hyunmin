@@ -84,18 +84,4 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
         userInfo.setRoles(Collections.singletonList(role));
         return userInfo;
     }
-
-    private void updateUserInfo(Claims claims) {
-        String email = claims.get("email", String.class);
-        if (email != null) {
-            Optional<Member> optionalMember = this.memberRepository.findByEmail(email);
-            if (optionalMember.isPresent()) {
-                Member member = optionalMember.get();
-                member.setName(claims.get("name", String.class));
-                member.setRole(claims.get("roles", Role.class));
-                this.memberRepository.save(member);
-                log.info("Member information updated: {}", member);
-            }
-        }
-    }
 }
