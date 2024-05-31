@@ -23,13 +23,11 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping({"/view"})
 @RestController
 public class ViewController {
-    private final ViewService viewService;
     private final CocktailsRepository cocktailsRepository;
     private final ViewRepository viewRepository;
     private final ExecutorService executorService = Executors.newFixedThreadPool(10);
 
     public ViewController(ViewService viewService, CocktailsRepository cocktailsRepository, ViewRepository viewRepository) {
-        this.viewService = viewService;
         this.cocktailsRepository = cocktailsRepository;
         this.viewRepository = viewRepository;
     }

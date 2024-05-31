@@ -18,14 +18,6 @@ public class ViewService {
     public ViewService() {
     }
 
-    @Transactional
-    public void updateViews(Long id, String timestamp) {
-        Cocktail cocktail = (Cocktail)this.cocktailRepository.findById(id).orElseThrow(() -> {
-            return new RuntimeException("Cocktail not found");
-        });
-        this.cocktailRepository.save(cocktail);
-    }
-
     public static Specification<ViewLog> inTimeRange(ZonedDateTime start, ZonedDateTime end) {
         return (root, query, builder) -> {
             Predicate predicate = builder.between(root.get("viewDate"), start, end);
